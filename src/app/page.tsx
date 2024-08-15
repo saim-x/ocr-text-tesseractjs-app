@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Images } from "lucide-react";
+import { CiImageOn } from "react-icons/ci";
 export default function Home() {
   return (
     <div>
@@ -12,11 +13,12 @@ export default function Home() {
       <div className="w-full md:p-20 p-5 flex items-center justify-center">
         <div className="min-h-[50vh] bg-[#2c2c2c] rounded-xl w-full md:p-20 p-5 flex items-center justify-center">
           <div className="flex items-center justify-center flex-col gap-2">
-            <p className="text-center ">
+            <p className="text-center text-2xl font-bold text-[#777777]">
               Browse or drag and drop an image to extract text from it
             </p>
-            <span className="text-[150px] ">
-              <Images className="h-20 w-20" />
+            <span className="text-[150px] text-[#777777] ">
+              {/* <CiImageOn /> className="h-16 w-16" /> */}
+              <CiImageOn />
             </span>
           </div>
         </div>
