@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link'
 import React from 'react'
 import { Github } from "lucide-react"
@@ -13,7 +15,7 @@ const Header = () => {
                 </Link>
             </div>
             <div>
-                <Button>
+                <Button onClick={() => window.location.href = 'https://github.com/saim-x'}>
                     <Github className="mr-2 h-4 w-4" /> Github
                 </Button>
             </div>
