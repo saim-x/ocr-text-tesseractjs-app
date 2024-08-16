@@ -90,7 +90,7 @@ export default function Home() {
         <p className="text-center text-sm mt-4">
           <a
             href="https://github.com/saim-x"
-            target="_blank" 
+            target="_blank"
             className="text-indigo-400 hover:underline"
           >
             Visit my GitHub profile
@@ -115,12 +115,13 @@ export default function Home() {
           className="min-h-[50vh] cursor-pointer bg-[#2c2c2c] rounded-xl w-full md:p-20 p-5 flex items-center justify-center"
         >
           <div className="flex items-center justify-center flex-col gap-2">
-            <p className="text-center text-2xl font-bold text-[#777777]">
-              {processing ? "Processing..." : "Click or drop image here"}
-            </p>
             <span className="text-[150px] text-[#777777] ">
               <CiImageOn className={processing ? "animate-pulse" : ""} />
             </span>
+            <p className="text-center text-2xl font-bold text-[#777777]">
+              {processing ? "Processing..." : "Click or drop your resume here"}
+            </p>
+
           </div>
         </div>
       </div>
