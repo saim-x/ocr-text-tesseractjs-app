@@ -12,6 +12,7 @@ export default function Home() {
   const imgInputRef: any = useRef(null);
   const [processing, setProcessing] = useState<boolean>(false);
   const [texts, setTexts] = useState<Array<string>>([]);
+  const [error, setError] = useState<string | null>(null);
 
   const openBrowse = () => {
     imgInputRef.current?.click();
@@ -20,64 +21,94 @@ export default function Home() {
   const convert = async (url: string) => {
     if (url) {
       setProcessing(true);
+      setError(null); // Clear previous errors
       try {
         const txt = await convertor(url); // Get the extracted text
         if (txt) {
-          const response = await fetch('/api/gemini', {
-            method: 'POST',
+          const response = await fetch("/api/gemini", {
+            method: "POST",
             headers: {
-              'Content-Type': 'application/json',
+              "Content-Type": "application/json",
             },
             body: JSON.stringify({ text: txt }), // Send the text to the API
           });
-  
+
           if (!response.ok) {
-            throw new Error('Network response was not ok');
+            throw new Error("Network response was not ok");
           }
-  
+
           const data = await response.json();
           if (data.generatedText) {
             setTexts((prev) => [...prev, data.generatedText]);
           } else {
-            console.error('Failed to get a response from Gemini AI');
+            console.error("Failed to get a response from Gemini AI");
           }
         }
       } catch (error) {
-        console.error('Conversion or API Error:', error);
+        console.error("Conversion or API Error:", error);
+        setError("Conversion or API Error.");
       } finally {
         setProcessing(false);
       }
     }
   };
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (file.type === "image/jpeg") {
+        const url: string = URL.createObjectURL(file);
+        convert(url);
+      } else {
+        setError("Unsupported file type. Please upload a JPG image.");
+      }
+    }
+  };
+
+  const handleDrop = (e: any) => {
+    e.preventDefault();
+    const file = e.dataTransfer.files?.[0];
+    if (file) {
+      if (file.type === "image/jpeg") {
+        const url = URL.createObjectURL(file);
+        convert(url);
+      } else {
+        setError("Unsupported file type. Please upload a JPG image.");
+      }
+    }
+  };
+
   return (
     <div>
-      <h1 className="text-white text-4xl md:text-6xl text-center px-5 pt-5 font-[800] ">
-        Text OCR by{" "}
-        <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block text-transparent bg-clip-text">
-          Tesseract Js{" "}
-        </span>
-      </h1>
+      <div className="py-4">
+        <h1 className="text-white text-4xl md:text-6xl text-center px-5 pt-5 font-[800] ">
+          <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block text-transparent bg-clip-text">
+            AI Resume
+          </span>{" "}
+          Analyzer
+        </h1>
+        <p className="text-center text-sm mt-4">
+          <a
+            href="https://github.com/saim-x"
+            className="text-indigo-400 hover:underline "
+          >
+            Visit my GitHub profile
+          </a>
+        </p>
+      </div>
       <input
         type="file"
         required
         ref={imgInputRef}
         hidden
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          const url: string = URL.createObjectURL(e.target.files?.[0]!);
-          convert(url);
-        }}
+        onChange={handleFileChange}
       />
 
       <div className="w-full md:p-20 p-5 flex items-center justify-center">
         <div
           onClick={openBrowse}
-          onDrop={(e: any) => {
-            e.preventDefault();
-            const url = URL.createObjectURL(e.dataTransfer.files?.[0]!);
-            convert(url);
-          }}
-          onDragOver={(e:any) => {
+          onDrop={handleDrop}
+          onDragOver={(e: any) => {
             e.preventDefault();
           }}
           className="min-h-[50vh] cursor-pointer bg-[#2c2c2c] rounded-xl w-full md:p-20 p-5 flex items-center justify-center"
@@ -92,6 +123,13 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* Display error message if there is one */}
+      {error && (
+        <div className="text-center text-red-500 mt-4">
+          <p>{error}</p>
+        </div>
+      )}
 
       <div className="my-10 md:px-20 px-5 space-y-10">
         {texts.map((t, i) => {
