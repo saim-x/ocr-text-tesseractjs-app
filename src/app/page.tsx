@@ -2,17 +2,24 @@
 import Image from "next/image";
 import { Images } from "lucide-react";
 import { CiImageOn } from "react-icons/ci";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import convertor from "@/lib/convertor";
 export default function Home() {
   const imgInputRef: any = useRef(null);
-  
+  const [processing, setProcessing] = useState<boolean>(false);
+
   const openBrowse = () => {
     imgInputRef.current?.click();
   }
-  const convert = (url: string) => {
-    if(url){
-      convertor(url);
+  const convert = async (url: string) => {
+    if (url) {
+      setProcessing(true);
+      await convertor(url).then((txt) => {
+        if (txt) {
+          console.log(txt);
+        }
+      });
+      setProcessing(false);
     }
   }
   return (
@@ -34,11 +41,11 @@ export default function Home() {
         <div className="min-h-[50vh] cursor-pointer  bg-[#2c2c2c] rounded-xl w-full md:p-20 p-5 flex items-center justify-center">
           <div className="flex items-center justify-center flex-col gap-2">
             <p className="text-center text-2xl font-bold text-[#777777]">
-              Browse or drag and drop an image to extract text from it
+              {processing ? "Processing..." : "Click to Browse Image"}
             </p>
             <span className="text-[150px] text-[#777777] ">
               {/* <CiImageOn /> className="h-16 w-16" /> */}
-              <CiImageOn />
+              <CiImageOn className={processing ? "animate-pulse" : ""} />
             </span>
           </div>
         </div>
