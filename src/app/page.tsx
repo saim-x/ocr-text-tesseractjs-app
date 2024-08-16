@@ -93,7 +93,7 @@ export default function Home() {
             target="_blank"
             className="text-indigo-400 hover:underline"
           >
-            Visit my GitHub profile
+            Who am I? 🚀
           </a>
         </p>
       </div>
