@@ -1,7 +1,20 @@
+'use client';
 import Image from "next/image";
 import { Images } from "lucide-react";
 import { CiImageOn } from "react-icons/ci";
+import { useRef } from "react";
+import convertor from "@/lib/convertor";
 export default function Home() {
+  const imgInputRef: any = useRef(null);
+  
+  const openBrowse = () => {
+    imgInputRef.current?.click();
+  }
+  const convert = (url: string) => {
+    if(url){
+      convertor(url);
+    }
+  }
   return (
     <div>
       <h1 className="text-white text-4xl md:text-6xl text-center px-5 pt-5 font-[800] ">
@@ -10,8 +23,15 @@ export default function Home() {
           Tesseract Js{" "}
         </span>
       </h1>
-      <div className="w-full md:p-20 p-5 flex items-center justify-center">
-        <div className="min-h-[50vh] bg-[#2c2c2c] rounded-xl w-full md:p-20 p-5 flex items-center justify-center">
+      <input type="file" required ref={imgInputRef} hidden onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files) {
+          const url: string = URL.createObjectURL(e.target.files[0]);
+          convert(url);
+        }
+
+      }} />
+      <div onClick={openBrowse} className="w-full md:p-20 p-5 flex items-center justify-center">
+        <div className="min-h-[50vh] cursor-pointer  bg-[#2c2c2c] rounded-xl w-full md:p-20 p-5 flex items-center justify-center">
           <div className="flex items-center justify-center flex-col gap-2">
             <p className="text-center text-2xl font-bold text-[#777777]">
               Browse or drag and drop an image to extract text from it
