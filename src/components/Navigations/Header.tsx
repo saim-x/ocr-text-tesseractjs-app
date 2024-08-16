@@ -11,7 +11,7 @@ const Header = () => {
         <div className='text-white w-full flex justify-between items-center md:px-20 py-5 px-5 sticky top-0 left-0 backdrop-blur-xl '>
             <div>
                 <Link href={'/'} className='font-bold text-3xl'>
-                    Saim.
+                    ResuAI.
                 </Link>
             </div>
             <div>
