@@ -73,7 +73,7 @@ export default function Home() {
         const url = URL.createObjectURL(file);
         convert(url);
       } else {
-        setError("Unsupported file type. Please upload a JPG image.");
+        setError("Unsupported file type. Please upload your resume in JPG format.");
       }
     }
   };
@@ -90,7 +90,8 @@ export default function Home() {
         <p className="text-center text-sm mt-4">
           <a
             href="https://github.com/saim-x"
-            className="text-indigo-400 hover:underline "
+            target="_blank" 
+            className="text-indigo-400 hover:underline"
           >
             Visit my GitHub profile
           </a>

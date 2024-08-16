@@ -18,7 +18,7 @@ const TextCard = ({ t, i }: { t: string, i: number }) => {
                     {buttonText}
                 </Button>
             </div>
-            <textarea className="w-full p-5 min-h-[30vh] mt-8 bg-[#2c2c2c] rounded-xl" defaultValue={t} />
+            <textarea className="w-full p-5 min-h-[70vh] mt-8 bg-[#2c2c2c] rounded-xl" defaultValue={t} />
         </div>
     );
 };
