@@ -5,6 +5,7 @@ import { CiImageOn } from "react-icons/ci";
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button"
 import convertor from "@/lib/convertor";
+import TextCard from "@/components/Cards/TextCard";
 export default function Home() {
   const imgInputRef: any = useRef(null);
   const [processing, setProcessing] = useState<boolean>(false);
@@ -42,7 +43,9 @@ export default function Home() {
         }
 
       }} />
-      <div  className="w-full md:p-20 p-5 flex items-center justify-center">
+
+
+      <div className="w-full md:p-20 p-5 flex items-center justify-center">
         <div onClick={openBrowse} className="min-h-[50vh] cursor-pointer  bg-[#2c2c2c] rounded-xl w-full md:p-20 p-5 flex items-center justify-center">
           <div className="flex items-center justify-center flex-col gap-2">
             <p className="text-center text-2xl font-bold text-[#777777]">
@@ -58,14 +61,12 @@ export default function Home() {
 
 
       <div className="my-10 md:px-20 px-5 space-y-10">
-        <div className="">
-          <div>
-            <p> {new Date().toUTCString()} </p>
-            <Button variant="secondary">Copy</Button>
-          </div>
-          <textarea className="w-full p-4 min-h-[30vh] mt-8 bg-[#2c2c2c] rounded-xl" defaultValue={"Nothing to show"} ></textarea>
+        {
+          texts.map((t, i) => {
+            return <TextCard key={i} i={i} t={t} />
+          })
+        }
 
-        </div>
       </div>
     </div>
   );
