@@ -125,7 +125,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Display error message if there is one */}
       {error && (
         <div className="text-center text-red-500 mt-4">
           <p>{error}</p>
