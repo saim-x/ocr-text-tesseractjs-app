@@ -1,12 +1,13 @@
 
-```markdown
-# ResumeAI
 
-ResumeAI is a web application designed to help users analyze and improve their resumes. It uses Tesseract OCR to extract text from resume images and Google AI Gemini for intelligent feedback and analysis.
+```markdown
+# resuAI
+
+resuAI is a web application designed to help users analyze and improve their resumes. It uses Tesseract OCR to extract text from resume images and Google AI Gemini for intelligent feedback and analysis.
 
 ## Live Demo
 
-Check out the live demo at [ResumeAI](https://resuai.vercel.app/).
+Check out the live demo at [resuAI](https://resuai.vercel.app/).
 
 ## Features
 
@@ -17,6 +18,8 @@ Check out the live demo at [ResumeAI](https://resuai.vercel.app/).
 ## Technologies Used
 
 - **Next.js**: Framework for building the web application.
+- **TypeScript**: Ensures type safety and reduces runtime errors.
+- **Tailwind CSS**: Utility-first CSS framework for responsive design.
 - **Tesseract OCR**: Open-source OCR engine for text extraction from images.
 - **Google AI Gemini**: Text model for analyzing and providing feedback on resume content.
 - **Vercel**: Hosting platform for deployment.
@@ -29,7 +32,7 @@ To run the project locally, follow these steps:
 
    ```bash
    git clone https://github.com/saim-x/ocr-text-tesseractjs-app.git
-   cd resumeai
+   cd ocr-text-tesseractjs-app
    ```
 
 2. **Install dependencies**
@@ -76,5 +79,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - [Tesseract OCR](https://github.com/tesseract-ocr/tesseract)
 - [Google AI Gemini](https://cloud.google.com/natural-language)
-
 ```
