@@ -3,10 +3,12 @@ import Image from "next/image";
 import { Images } from "lucide-react";
 import { CiImageOn } from "react-icons/ci";
 import { useRef, useState } from "react";
+import { Button } from "@/components/ui/button"
 import convertor from "@/lib/convertor";
 export default function Home() {
   const imgInputRef: any = useRef(null);
   const [processing, setProcessing] = useState<boolean>(false);
+  const [texts, setTexts] = useState<Array<string>>([]);
 
   const openBrowse = () => {
     imgInputRef.current?.click();
@@ -16,6 +18,9 @@ export default function Home() {
       setProcessing(true);
       await convertor(url).then((txt) => {
         if (txt) {
+          const copyTexts = texts;
+          copyTexts.push(txt);
+          setTexts(copyTexts);
           console.log(txt);
         }
       });
@@ -37,17 +42,29 @@ export default function Home() {
         }
 
       }} />
-      <div onClick={openBrowse} className="w-full md:p-20 p-5 flex items-center justify-center">
-        <div className="min-h-[50vh] cursor-pointer  bg-[#2c2c2c] rounded-xl w-full md:p-20 p-5 flex items-center justify-center">
+      <div  className="w-full md:p-20 p-5 flex items-center justify-center">
+        <div onClick={openBrowse} className="min-h-[50vh] cursor-pointer  bg-[#2c2c2c] rounded-xl w-full md:p-20 p-5 flex items-center justify-center">
           <div className="flex items-center justify-center flex-col gap-2">
             <p className="text-center text-2xl font-bold text-[#777777]">
-              {processing ? "Processing..." : "Click to Browse Image"}
+              {processing ? "Processing..." : "Click or drop image here"}
             </p>
             <span className="text-[150px] text-[#777777] ">
               {/* <CiImageOn /> className="h-16 w-16" /> */}
               <CiImageOn className={processing ? "animate-pulse" : ""} />
             </span>
           </div>
+        </div>
+      </div>
+
+
+      <div className="my-10 md:px-20 px-5 space-y-10">
+        <div className="">
+          <div>
+            <p> {new Date().toUTCString()} </p>
+            <Button variant="secondary">Copy</Button>
+          </div>
+          <textarea className="w-full p-4 min-h-[30vh] mt-8 bg-[#2c2c2c] rounded-xl" defaultValue={"Nothing to show"} ></textarea>
+
         </div>
       </div>
     </div>
