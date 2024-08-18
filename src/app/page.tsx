@@ -7,6 +7,8 @@ import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import convertor from "@/lib/convertor";
 import TextCard from "@/components/Cards/TextCard";
+import { MessageSquareShare } from 'lucide-react';
+import { Trash } from 'lucide-react';
 
 export default function Home() {
   const imgInputRef: any = useRef(null);
@@ -87,7 +89,7 @@ export default function Home() {
           </span>{" "}
           Analyzer
         </h1>
-        <p className="text-center text-sm mt-4">
+        <p className="text-center text-sm mt-4 flex justify-center ">
           <a
             href="https://github.com/saim-x"
             target="_blank"
@@ -95,6 +97,7 @@ export default function Home() {
           >
             Who am I? 🚀
           </a>
+
         </p>
       </div>
       <input
@@ -136,6 +139,26 @@ export default function Home() {
         {texts.map((t, i) => {
           return <TextCard key={i} i={i} t={t} />;
         })}
+      </div>
+
+      <div className="flex items-center justify-center my-10 flex-col gap-8">
+        <Button
+          onClick={() => {
+            setTexts([]);
+            setError(null);
+          }}
+          variant="destructive"
+        >
+          <Trash className="mr-2 h-4 w-4" />
+          Clear All
+        </Button>
+        <Button
+          onClick={() => {
+            window.open(process.env.NEXT_PUBLIC_FORM_URL, "_blank");
+          }}
+        >
+          <    MessageSquareShare className="mr-2 h-4 w-4" />Share your feedback
+        </Button>
       </div>
     </div>
   );
