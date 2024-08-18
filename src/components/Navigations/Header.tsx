@@ -7,12 +7,15 @@ import { Github } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const Header = () => {
+    const handleReload = () => {
+        window.location.reload();
+    };
     return (
         <div className='text-white w-full flex justify-between items-center md:px-20 py-5 px-5 sticky top-0 left-0 backdrop-blur-xl '>
             <div>
-                <Link href={'/'} className='font-bold text-3xl'>
+                <Button variant="ghost" onClick={handleReload} className='font-bold text-3xl'>
                     ResuAI.
-                </Link>
+                </Button>
             </div>
             <div>
                 <Button onClick={() => window.location.href = 'https://github.com/saim-x'}>
