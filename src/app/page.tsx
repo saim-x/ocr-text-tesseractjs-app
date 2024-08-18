@@ -154,7 +154,7 @@ export default function Home() {
         </Button>
         <Button
           onClick={() => {
-            window.open(process.env.NEXT_PUBLIC_URL, "_blank");
+            window.open("https://forms.gle/6A3KDhj6kmRkvLrC7", "_blank");
           }}
         >
           <    MessageSquareShare className="mr-2 h-4 w-4" />Share your feedback
