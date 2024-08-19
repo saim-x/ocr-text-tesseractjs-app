@@ -363,7 +363,7 @@ const TextCard = ({ t, i }: { t: string, i: number }) => {
     return (
         <div className="p-5">
             {/* Header Section */}
-            <div className="flex w-full items-center justify-between mb-5 px-5 py-3 bg-[#1e1e1e] rounded-lg shadow-md">
+            <div className="flex w-full items-center justify-between mb-5 px-5 py-3 bg-gray-800 rounded-lg shadow-md">
                 <p className="text-xl font-semibold text-white">{`${i + 1}. `}{new Date().toUTCString()}</p>
                 <Button onClick={() => copyToClipBoard(t)} className="bg-blue-500 text-white hover:bg-blue-600">
                     {buttonText}
@@ -373,7 +373,12 @@ const TextCard = ({ t, i }: { t: string, i: number }) => {
             {/* Score Container */}
             {score && (
                 <div
-                    className="flex items-center justify-center mb-5 rounded-lg text-white text-center font-bold bg-gradient-to-r from-slate-900 to-slate-700 p-4 shadow-lg"
+                    className="flex items-center justify-center mb-5 rounded-lg text-white text-center font-bold bg-gradient-to-tr from-gray-800 to-gray-700
+
+
+
+
+                    0 p-4 shadow-lg"
                     style={{
                         width: 'min(80vw, 300px)',  // Responsive width, max width 300px
                         height: 'min(40vw, 150px)', // Responsive height, max height 150px
@@ -385,7 +390,7 @@ const TextCard = ({ t, i }: { t: string, i: number }) => {
 
             {/* Strengths Container */}
             {result.strengthsContent && (
-                <div className="mb-5 bg-[#1e1e1e] p-4 rounded-lg shadow-md">
+                <div className="mb-5 bg-gray-800 p-4 rounded-lg shadow-md">
                     <h2 className="text-xl font-bold text-green-400 mb-2">Strengths:</h2>
                     <div className="text-white">
                         <MarkdownRenderer markdownText={result.strengthsContent} />
@@ -395,7 +400,7 @@ const TextCard = ({ t, i }: { t: string, i: number }) => {
 
             {/* Areas of Improvement Container */}
             {result2.areasOfImprovementContent && (
-                <div className="mb-5 bg-[#1e1e1e] p-4 rounded-lg shadow-md">
+                <div className="mb-5 bg-gray-800 p-4 rounded-lg shadow-md">
                     <h2 className="text-xl font-bold text-yellow-400 mb-2">Areas of Improvement:</h2>
                     <div className="text-white">
                         <MarkdownRenderer markdownText={result2.areasOfImprovementContent} />
@@ -405,7 +410,7 @@ const TextCard = ({ t, i }: { t: string, i: number }) => {
 
             {/* Recommendations Container */}
             {result3.recommendationsContent && (
-                <div className="bg-[#1e1e1e] p-4 rounded-lg shadow-md">
+                <div className="bg-gray-800 p-4 rounded-lg shadow-md">
                     <h2 className="text-xl font-bold text-red-400 mb-2">Recommendations:</h2>
                     <div className="text-white">
                         <MarkdownRenderer markdownText={result3.recommendationsContent} />
